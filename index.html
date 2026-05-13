@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山陰・岡山 3日間の旅</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --day1: #4a3f6b;
+    --day1-light: #ede8f7;
+    --day1-mid: #7c6fa0;
+    --day2: #1e5a8a;
+    --day2-light: #e3f0fa;
+    --day2-mid: #3d7eb5;
+    --day3: #8a4e1e;
+    --day3-light: #faeee3;
+    --day3-mid: #c07840;
+    --cat-sight: #2d7a4f;
+    --cat-food: #b04020;
+    --cat-move: #555;
+    --cat-hotel: #1a6b8a;
+    --bg: #f7f5f0;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --sub: #666;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #2c2042 0%, #1e3a5f 50%, #3d2010 100%);
+    color: white;
+    padding: 36px 20px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: -40px; right: -40px; bottom: -40px;
+    background: radial-gradient(ellipse at 30% 50%, rgba(120,90,180,0.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 40%, rgba(30,90,160,0.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  header .label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 8px;
+  }
+  header h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  header .sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 16px;
+    background: white;
+    border-bottom: 1px solid #e8e4dc;
+    justify-content: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--sub);
+  }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* DAY TABS */
+  .tabs {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid #e8e4dc;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .tab {
+    flex: 1;
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    color: #aaa;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    line-height: 1.4;
+  }
+  .tab span { display: block; font-size: 10px; font-weight: 400; }
+  .tab.active.d1 { color: var(--day1); border-bottom-color: var(--day1); }
+  .tab.active.d2 { color: var(--day2); border-bottom-color: var(--day2); }
+  .tab.active.d3 { color: var(--day3); border-bottom-color: var(--day3); }
+
+  /* DAY SECTIONS */
+  .day-section { display: none; padding: 0 0 80px; }
+  .day-section.active { display: block; }
+
+  /* DAY BANNER */
+  .day-banner {
+    padding: 20px 16px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .day-badge {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: white;
+    font-size: 11px;
+    line-height: 1.3;
+  }
+  .day-badge .num { font-size: 20px; line-height: 1; }
+  .d1 .day-badge { background: var(--day1); }
+  .d2 .day-badge { background: var(--day2); }
+  .d3 .day-badge { background: var(--day3); }
+  .day-title { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; line-height: 1.4; }
+  .day-subtitle { font-size: 12px; color: var(--sub); margin-top: 2px; }
+
+  /* TIMELINE */
+  .timeline {
+    padding: 0 16px;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 36px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #ddd 0%, #ddd 100%);
+  }
+
+  /* TIMELINE ITEM */
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 4px;
+    position: relative;
+  }
+  .tl-left {
+    width: 38px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 16px;
+  }
+  .tl-dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 3px solid white;
+    flex-shrink: 0;
+    z-index: 1;
+    box-shadow: 0 0 0 2px currentColor;
+  }
+  .tl-time {
+    font-size: 10px;
+    color: var(--sub);
+    margin-top: 5px;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+  .tl-right {
+    flex: 1;
+    padding: 10px 0 10px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 13px 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    border-left: 4px solid transparent;
+  }
+  .card.sight { border-left-color: var(--cat-sight); }
+  .card.food  { border-left-color: var(--cat-food); }
+  .card.move  { border-left-color: var(--cat-move); background: #f9f9f9; }
+  .card.hotel { border-left-color: var(--cat-hotel); }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 5px;
+  }
+  .card-icon {
+    font-size: 18px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .card-name {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+    flex: 1;
+  }
+  .cat-badge {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .cat-badge.sight { background: #e8f5ee; color: var(--cat-sight); }
+  .cat-badge.food  { background: #fdeee9; color: var(--cat-food); }
+  .cat-badge.move  { background: #eee; color: var(--cat-move); }
+  .cat-badge.hotel { background: #e3f2f8; color: var(--cat-hotel); }
+
+  .card-note {
+    font-size: 12px;
+    color: var(--sub);
+    line-height: 1.6;
+    padding-left: 26px;
+  }
+  .card-note .warn {
+    color: #c04000;
+    font-weight: 700;
+  }
+
+  /* DOT COLORS */
+  .tl-dot.sight { color: var(--cat-sight); }
+  .tl-dot.food  { color: var(--cat-food); }
+  .tl-dot.move  { color: var(--cat-move); }
+  .tl-dot.hotel { color: var(--cat-hotel); }
+
+  /* NOTE BOX */
+  .note-box {
+    margin: 12px 16px 0;
+    background: #fffbf0;
+    border: 1px solid #f0d890;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 12px;
+    color: #6b5500;
+    line-height: 1.7;
+  }
+  .note-box strong { color: #8a5000; }
+
+  /* SECTION DIVIDER */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #aaa;
+    padding: 16px 16px 6px;
+    text-transform: uppercase;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    font-size: 11px;
+    color: #bbb;
+    padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="label">Travel Plan</div>
+  <h1>山陰・岡山 3日間の旅</h1>
+  <div class="sub">出雲 → 松江 → 倉敷 → 児島 → 岡山</div>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--cat-sight)"></div>観光スポット</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--cat-food)"></div>食事</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--cat-move)"></div>移動</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--cat-hotel)"></div>宿泊</div>
+</div>
+
+<div class="tabs">
+  <button class="tab d1 active" onclick="showDay(1)">1日目<span>出雲・松江</span></button>
+  <button class="tab d2" onclick="showDay(2)">2日目<span>倉敷・児島・岡山</span></button>
+  <button class="tab d3" onclick="showDay(3)">3日目<span>岡山→空港</span></button>
+</div>
+
+<!-- ==================== DAY 1 ==================== -->
+<div class="day-section d1 active" id="day1">
+  <div class="day-banner d1">
+    <div class="day-badge d1"><span>DAY</span><span class="num">1</span></div>
+    <div>
+      <div class="day-title">出雲・松江</div>
+      <div class="day-subtitle">神話の地から宍道湖の城下町へ</div>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot move"></div>
+        <div class="tl-time">10:00</div>
+      </div>
+      <div class="tl-right">
+        <div class="card move">
+          <div class="card-top">
+            <div class="card-icon">🚃</div>
+            <div class="card-name">出雲市駅 着</div>
+            <div class="cat-badge move">移動</div>
+          </div>
+          <div class="card-note">一畑電車「出雲大社前」行き約30分、またはバス・タクシーで大社へ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">10:40〜<br>12:15</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">⛩️</div>
+            <div class="card-name">出雲大社</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">縁結びの神・大国主命を祀る最高格式の神社。神楽殿の大しめ縄必見。<br><span class="warn">※二礼四拍手一礼</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">12:30〜<br>12:45</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">🌊</div>
+            <div class="card-name">稲佐の浜</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">大社から徒歩約15分。全国の神々が集まる「神迎えの浜」。弁天島の眺めが絵になる</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">13:00〜<br>14:00</div>
+      </div>
+      <div class="tl-right">
+        <div class="card food">
+          <div class="card-top">
+            <div class="card-icon">🍜</div>
+            <div class="card-name">ランチ｜荒木屋（出雲そば）</div>
+            <div class="cat-badge food">食事</div>
+          </div>
+          <div class="card-note">出雲大社すぐ近くの割子そば老舗。<br><span class="warn">⚠ 水曜定休・16時閉店注意</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">14:15〜<br>15:45</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">🏛️</div>
+            <div class="card-name">島根県立古代出雲歴史博物館</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">出雲大社の隣。出土した銅剣358本の展示は圧巻。参拝後に見ると神話の世界観がより深まる</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot move"></div>
+        <div class="tl-time">〜16:50</div>
+      </div>
+      <div class="tl-right">
+        <div class="card move">
+          <div class="card-top">
+            <div class="card-icon">🚌</div>
+            <div class="card-name">松江へ移動</div>
+            <div class="cat-badge move">移動</div>
+          </div>
+          <div class="card-note">車・バスで約1時間。松江城の最終入場は17:30なので急ぎめに</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">17:00〜<br>18:00</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">🏯</div>
+            <div class="card-name">松江城（国宝）</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">現存12天守のひとつ・国宝。黒壁が渋い。天守からの眺めも◎<br><span class="warn">⚠ 最終入場17:30・閉館18:00</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot hotel"></div>
+        <div class="tl-time">18:30</div>
+      </div>
+      <div class="tl-right">
+        <div class="card hotel">
+          <div class="card-top">
+            <div class="card-icon">🏨</div>
+            <div class="card-name">夕景湖畔 すいてんかく</div>
+            <div class="cat-badge hotel">宿泊</div>
+          </div>
+          <div class="card-note">宍道湖畔の温泉旅館。夕食なしプランでチェックイン。お風呂からの湖の眺めが◎</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">19:00〜</div>
+      </div>
+      <div class="tl-right">
+        <div class="card food">
+          <div class="card-top">
+            <div class="card-icon">🍶</div>
+            <div class="card-name">夕食｜こねっこや</div>
+            <div class="cat-badge food">食事</div>
+          </div>
+          <div class="card-note">すいてんかくから徒歩数分。しじみ・のどぐろなど宍道湖の地元食材が揃う居酒屋<br><span class="warn">⚠ 要予約</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>📌 1日目メモ</strong><br>
+    荒木屋は人気店のため混む可能性あり。12:30より少し早めに並ぶとスムーズ。<br>
+    松江城入場は17:30が締切なので移動が押した場合は翌朝に変更する選択肢も。<br>
+    こねっこやは要予約。旅行前に電話しておくと安心。
+  </div>
+</div>
+
+<!-- ==================== DAY 2 ==================== -->
+<div class="day-section d2" id="day2">
+  <div class="day-banner d2">
+    <div class="day-badge d2"><span>DAY</span><span class="num">2</span></div>
+    <div>
+      <div class="day-title">倉敷・児島・岡山</div>
+      <div class="day-subtitle">美観地区からジーンズの聖地へ</div>
+    </div>
+  </div>
+
+  <div class="section-label">松江 → 倉敷</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot move"></div>
+        <div class="tl-time">7:54</div>
+      </div>
+      <div class="tl-right">
+        <div class="card move">
+          <div class="card-top">
+            <div class="card-icon">🚄</div>
+            <div class="card-name">松江駅発｜特急やくも</div>
+            <div class="cat-badge move">移動</div>
+          </div>
+          <div class="card-note">倉敷まで約2時間半。車内で朝食（乗車前に駅でパン・おにぎりを購入推奨）<br><span class="warn">⚠ 指定席の事前予約推奨。本数少ないので時刻確認を</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">倉敷エリア</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">10:35〜<br>11:15</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">🛶</div>
+            <div class="card-name">倉敷美観地区</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">倉敷駅から徒歩10分。白壁・柳並木の運河沿いを散策。午前中は人が少なく写真映えも最高</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">11:20〜<br>12:20</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">🖼️</div>
+            <div class="card-name">大原美術館</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">日本初の西洋近代美術館。モネ・ピカソ・エル・グレコの本物が揃う。入場料2,000円</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">12:30〜<br>13:30</div>
+      </div>
+      <div class="tl-right">
+        <div class="card food">
+          <div class="card-top">
+            <div class="card-icon">🍛</div>
+            <div class="card-name">ランチ｜Akaneiro（倉敷）</div>
+            <div class="cat-badge food">食事</div>
+          </div>
+          <div class="card-note">美観地区・蔵造りビル3F。バターチキン or 緑カレーランチセット約1,400円〜。テラスから街並みを一望<br><span class="warn">⚠ 月曜定休</span><br>※または <strong>元祖ぶっかけふるいち</strong>（ぶっかけうどん）に変更もアリ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">13:35〜<br>14:00</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">👖</div>
+            <div class="card-name">Denim Laboratory（美観地区内）</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">美観地区のデニムショップ。小物・キャップなど軽くチェック。児島本番前の予習に</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">児島 ジーンズの聖地</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot move"></div>
+        <div class="tl-time">14:05</div>
+      </div>
+      <div class="tl-right">
+        <div class="card move">
+          <div class="card-top">
+            <div class="card-icon">🚃</div>
+            <div class="card-name">倉敷駅 → 児島駅</div>
+            <div class="cat-badge move">移動</div>
+          </div>
+          <div class="card-note">JR赤穂線で約20分</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">14:30〜<br>16:30</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">👖</div>
+            <div class="card-name">児島ジーンズストリート</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">日本ジーンズ発祥の地。約30店が集結。ストリートの天井にジーンズが並ぶ圧巻の光景。2時間はみたい</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">（児島滞在中）</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">🏪</div>
+            <div class="card-name">Japan Blue Jeans KOJIMA</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">児島ジーンズのトップブランド。本格的な国産デニムの本拠地</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">16:45〜<br>17:15</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">🌉</div>
+            <div class="card-name">鷲羽山展望台</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">瀬戸大橋と瀬戸内海の絶景。夕方は特に空と海の色が美しい</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">岡山</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot move"></div>
+        <div class="tl-time">〜18:00</div>
+      </div>
+      <div class="tl-right">
+        <div class="card move">
+          <div class="card-top">
+            <div class="card-icon">🚃</div>
+            <div class="card-name">児島 → 岡山駅 移動</div>
+            <div class="cat-badge move">移動</div>
+          </div>
+          <div class="card-note">JRで岡山駅方面へ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">18:00〜<br>19:00</div>
+      </div>
+      <div class="tl-right">
+        <div class="card food">
+          <div class="card-top">
+            <div class="card-icon">🦐</div>
+            <div class="card-name">夕食｜えびめし屋</div>
+            <div class="cat-badge food">食事</div>
+          </div>
+          <div class="card-note">岡山のソウルフード「えびめし」専門店。真っ黒なチャーハン風ご飯は見た目インパクト大で旨味深い</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot hotel"></div>
+        <div class="tl-time">19:00</div>
+      </div>
+      <div class="tl-right">
+        <div class="card hotel">
+          <div class="card-top">
+            <div class="card-icon">🏨</div>
+            <div class="card-name">スーパーホテル岡山駅東口</div>
+            <div class="cat-badge hotel">宿泊</div>
+          </div>
+          <div class="card-note">岡山駅東口から徒歩5分。天然温泉・無料朝食付き</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>📌 2日目メモ</strong><br>
+    やくもの指定席は前日までに予約推奨。<br>
+    児島は本気で見ると3時間コースなのでジーンズ優先なら倉敷滞在を短縮してもOK。<br>
+    鷲羽山は児島からタクシーが便利（約10分）。
+  </div>
+</div>
+
+<!-- ==================== DAY 3 ==================== -->
+<div class="day-section d3" id="day3">
+  <div class="day-banner d3">
+    <div class="day-badge d3"><span>DAY</span><span class="num">3</span></div>
+    <div>
+      <div class="day-title">岡山 → 空港</div>
+      <div class="day-subtitle">吉備路から桃太郎の城、そして帰路へ</div>
+    </div>
+  </div>
+
+  <div class="section-label">午前</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">〜9:00</div>
+      </div>
+      <div class="tl-right">
+        <div class="card food">
+          <div class="card-top">
+            <div class="card-icon">🍳</div>
+            <div class="card-name">朝食｜ホテル無料朝食</div>
+            <div class="cat-badge food">食事</div>
+          </div>
+          <div class="card-note">スーパーホテルの無料朝食をしっかり食べて出発</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">9:30〜<br>11:00</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">⛩️</div>
+            <div class="card-name">吉備津神社</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">日本最大級の比翼入母屋造。全国唯一の様式を持つ格式高い古社。岡山駅から電車で約15分</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">午後</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">11:30〜<br>12:30</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">🏯</div>
+            <div class="card-name">岡山城</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">「烏城」と呼ばれる黒い天守が特徴。後楽園との共通券（410円）がお得。体験型ミュージアムとして整備済み</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">12:45〜<br>13:45</div>
+      </div>
+      <div class="tl-right">
+        <div class="card food">
+          <div class="card-top">
+            <div class="card-icon">🥩</div>
+            <div class="card-name">ランチ｜のむら（デミカツ丼）</div>
+            <div class="cat-badge food">食事</div>
+          </div>
+          <div class="card-note">岡山名物・デミグラスソースのかつ丼。ご当地グルメの締めくくりに</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot sight"></div>
+        <div class="tl-time">14:00〜<br>15:30</div>
+      </div>
+      <div class="tl-right">
+        <div class="card sight">
+          <div class="card-top">
+            <div class="card-icon">🛍️</div>
+            <div class="card-name">岡山駅周辺でお土産</div>
+            <div class="cat-badge sight">観光</div>
+          </div>
+          <div class="card-note">きびだんご・マスカット菓子・白桃ゼリーなど岡山名産を駅ビルでまとめて購入</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">帰路</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot move"></div>
+        <div class="tl-time">17:30</div>
+      </div>
+      <div class="tl-right">
+        <div class="card move">
+          <div class="card-top">
+            <div class="card-icon">🚌</div>
+            <div class="card-name">岡山駅前発｜空港リムジンバス</div>
+            <div class="cat-badge move">移動</div>
+          </div>
+          <div class="card-note">岡山桃太郎空港まで約30分。17:30発のバスに乗車</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot move"></div>
+        <div class="tl-time">18:00</div>
+      </div>
+      <div class="tl-right">
+        <div class="card move">
+          <div class="card-top">
+            <div class="card-icon">✈️</div>
+            <div class="card-name">岡山桃太郎空港 着</div>
+            <div class="cat-badge move">移動</div>
+          </div>
+          <div class="card-note">チェックイン・搭乗手続き。余裕を持って保安検査へ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot move"></div>
+        <div class="tl-time">19:00過ぎ</div>
+      </div>
+      <div class="tl-right">
+        <div class="card move">
+          <div class="card-top">
+            <div class="card-icon">🛫</div>
+            <div class="card-name">出発！</div>
+            <div class="cat-badge move">移動</div>
+          </div>
+          <div class="card-note">お疲れさまでした。良い旅を！</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>📌 3日目メモ</strong><br>
+    吉備津神社と岡山城は少し離れているので移動時間に注意。<br>
+    お土産は岡山駅ビル「さんすて」や「岡山一番街」でほぼ揃う。<br>
+    リムジンバスは混雑時に乗れないことがあるので早めにバス停へ。
+  </div>
+</div>
+
+<footer>山陰・岡山 旅行プラン｜楽しい旅を ✈️</footer>
+
+<script>
+function showDay(n) {
+  document.querySelectorAll('.day-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('day' + n).classList.add('active');
+  document.querySelectorAll('.tab')[n-1].classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
