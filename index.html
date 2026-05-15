@@ -36,7 +36,6 @@ color: var(–text);
 min-height: 100vh;
 }
 
-/* HEADER */
 header {
 background: linear-gradient(135deg, #2c2042 0%, #1e3a5f 50%, #3d2010 100%);
 color: white;
@@ -72,7 +71,6 @@ font-size: 13px;
 color: rgba(255,255,255,0.65);
 }
 
-/* LEGEND */
 .legend {
 display: flex;
 flex-wrap: wrap;
@@ -95,7 +93,6 @@ border-radius: 50%;
 flex-shrink: 0;
 }
 
-/* DAY TABS */
 .tabs {
 display: flex;
 position: sticky;
@@ -124,11 +121,9 @@ line-height: 1.4;
 .tab.active.d2 { color: var(–day2); border-bottom-color: var(–day2); }
 .tab.active.d3 { color: var(–day3); border-bottom-color: var(–day3); }
 
-/* DAY SECTIONS */
 .day-section { display: none; padding: 0 0 80px; }
 .day-section.active { display: block; }
 
-/* DAY BANNER */
 .day-banner {
 padding: 20px 16px 16px;
 display: flex;
@@ -153,7 +148,6 @@ line-height: 1.3;
 .day-title { font-family: ‘Noto Serif JP’, serif; font-size: 18px; font-weight: 700; line-height: 1.4; }
 .day-subtitle { font-size: 12px; color: var(–sub); margin-top: 2px; }
 
-/* TIMELINE */
 .timeline {
 padding: 0 16px;
 position: relative;
@@ -166,7 +160,6 @@ width: 2px;
 background: linear-gradient(to bottom, #ddd 0%, #ddd 100%);
 }
 
-/* TIMELINE ITEM */
 .tl-item {
 display: flex;
 gap: 14px;
@@ -202,7 +195,6 @@ flex: 1;
 padding: 10px 0 10px;
 }
 
-/* CARD */
 .card {
 background: var(–card);
 border-radius: 12px;
@@ -222,18 +214,8 @@ align-items: flex-start;
 gap: 8px;
 margin-bottom: 5px;
 }
-.card-icon {
-font-size: 18px;
-line-height: 1;
-flex-shrink: 0;
-margin-top: 1px;
-}
-.card-name {
-font-size: 15px;
-font-weight: 700;
-line-height: 1.35;
-flex: 1;
-}
+.card-icon { font-size: 18px; line-height: 1; flex-shrink: 0; margin-top: 1px; }
+.card-name { font-size: 15px; font-weight: 700; line-height: 1.35; flex: 1; }
 .cat-badge {
 font-size: 10px;
 padding: 2px 7px;
@@ -253,18 +235,13 @@ color: var(–sub);
 line-height: 1.6;
 padding-left: 26px;
 }
-.card-note .warn {
-color: #c04000;
-font-weight: 700;
-}
+.card-note .warn { color: #c04000; font-weight: 700; }
 
-/* DOT COLORS */
 .tl-dot.sight { color: var(–cat-sight); }
 .tl-dot.food  { color: var(–cat-food); }
 .tl-dot.move  { color: var(–cat-move); }
 .tl-dot.hotel { color: var(–cat-hotel); }
 
-/* NOTE BOX */
 .note-box {
 margin: 12px 16px 0;
 background: #fffbf0;
@@ -277,7 +254,6 @@ line-height: 1.7;
 }
 .note-box strong { color: #8a5000; }
 
-/* SECTION DIVIDER */
 .section-label {
 font-size: 11px;
 font-weight: 700;
@@ -287,7 +263,6 @@ padding: 16px 16px 6px;
 text-transform: uppercase;
 }
 
-/* FOOTER */
 footer {
 text-align: center;
 font-size: 11px;
@@ -558,7 +533,7 @@ padding: 20px;
         <div class="card-name">早めランチ｜Akaneiro（倉敷）</div>
         <div class="cat-badge food">食事</div>
       </div>
-      <div class="card-note">美観地区・蔵造りビル3F。バターチキン or 緑カレーランチセット約1,400円〜。テラスから街並みを一望<br><span class="warn">⚠ 月曜定休</span><br>※または <strong>元祖ぶっかけふるいち</strong>（ぶっかけうどん）に変更もアリ</div>
+      <div class="card-note">美観地区・林源十郎商店3F。ランチは日替わり形式（バターチキンカレー等）約1,400円〜。テラスから街並みを一望<br><span class="warn">⚠ 月曜定休（祝日の場合振替あり）。メニューは日替わりのため要確認</span><br>※または <strong>元祖ぶっかけふるいち</strong>（ぶっかけうどん）に変更もアリ</div>
     </div>
   </div>
 </div>
@@ -580,7 +555,7 @@ padding: 20px;
             <div class="card-name">倉敷駅 → 児島駅</div>
             <div class="cat-badge move">移動</div>
           </div>
-          <div class="card-note">JR赤穂線で約20分</div>
+          <div class="card-note">山陽本線で岡山へ→快速マリンライナーに乗換→児島駅。約50分・乗換1回（770円）<br><span class="warn">⚠ 赤穂線は児島方面に行かないので注意</span></div>
         </div>
       </div>
     </div>
@@ -589,7 +564,7 @@ padding: 20px;
 <div class="tl-item">
   <div class="tl-left">
     <div class="tl-dot sight"></div>
-    <div class="tl-time">13:25〜<br>16:30</div>
+    <div class="tl-time">14:00〜<br>17:00</div>
   </div>
   <div class="tl-right">
     <div class="card sight">
@@ -598,7 +573,7 @@ padding: 20px;
         <div class="card-name">児島ジーンズストリート</div>
         <div class="cat-badge sight">観光</div>
       </div>
-      <div class="card-note">日本ジーンズ発祥の地。約30店が集結。ストリートの天井にジーンズが並ぶ圧巻の光景。美術館カットで約3時間たっぷり滞在できる！</div>
+      <div class="card-note">日本ジーンズ発祥の地。約30店が集結。ストリートの天井にジーンズが並ぶ圧巻の光景。約3時間たっぷり滞在できる！</div>
     </div>
   </div>
 </div>
@@ -622,8 +597,25 @@ padding: 20px;
 
 <div class="tl-item">
   <div class="tl-left">
+    <div class="tl-dot move"></div>
+    <div class="tl-time">17:00</div>
+  </div>
+  <div class="tl-right">
+    <div class="card move">
+      <div class="card-top">
+        <div class="card-icon">🚌</div>
+        <div class="card-name">児島駅 → 鷲羽山展望台</div>
+        <div class="cat-badge move">移動</div>
+      </div>
+      <div class="card-note">下電バス「とこはい号」で約30分（毎時30分発・1日10便）。鷲羽山第二展望台下車。タクシー利用も可（約10分）</div>
+    </div>
+  </div>
+</div>
+
+<div class="tl-item">
+  <div class="tl-left">
     <div class="tl-dot sight"></div>
-    <div class="tl-time">16:45〜<br>17:15</div>
+    <div class="tl-time">17:30〜<br>18:00</div>
   </div>
   <div class="tl-right">
     <div class="card sight">
@@ -632,7 +624,7 @@ padding: 20px;
         <div class="card-name">鷲羽山展望台</div>
         <div class="cat-badge sight">観光</div>
       </div>
-      <div class="card-note">瀬戸大橋と瀬戸内海の絶景。夕方は特に空と海の色が美しい</div>
+      <div class="card-note">瀬戸大橋と瀬戸内海の絶景。夕方は特に空と海の色が美しい<br><span class="warn">⚠ バスの帰り便は毎時30分。乗り遅れに注意</span></div>
     </div>
   </div>
 </div>
@@ -645,7 +637,7 @@ padding: 20px;
     <div class="tl-item">
       <div class="tl-left">
         <div class="tl-dot move"></div>
-        <div class="tl-time">〜18:00</div>
+        <div class="tl-time">〜19:00</div>
       </div>
       <div class="tl-right">
         <div class="card move">
@@ -654,7 +646,7 @@ padding: 20px;
             <div class="card-name">児島 → 岡山駅 移動</div>
             <div class="cat-badge move">移動</div>
           </div>
-          <div class="card-note">JRで岡山駅方面へ</div>
+          <div class="card-note">とこはい号でバス停→児島駅→快速マリンライナーで岡山へ</div>
         </div>
       </div>
     </div>
@@ -663,7 +655,7 @@ padding: 20px;
 <div class="tl-item">
   <div class="tl-left">
     <div class="tl-dot food"></div>
-    <div class="tl-time">18:00〜<br>19:00</div>
+    <div class="tl-time">19:00〜<br>20:00</div>
   </div>
   <div class="tl-right">
     <div class="card food">
@@ -680,7 +672,7 @@ padding: 20px;
 <div class="tl-item">
   <div class="tl-left">
     <div class="tl-dot hotel"></div>
-    <div class="tl-time">19:00</div>
+    <div class="tl-time">20:00</div>
   </div>
   <div class="tl-right">
     <div class="card hotel">
@@ -700,8 +692,8 @@ padding: 20px;
   <div class="note-box">
     <strong>📌 2日目メモ</strong><br>
     やくもの指定席は前日までに予約推奨。<br>
-    大原美術館カットでランチを早め、児島を約3時間たっぷり回れる構成に。ジーンズ本番は児島で！<br>
-    鷲羽山は児島からタクシーが便利（約10分）。
+    倉敷→児島は山陽本線で岡山乗換→快速マリンライナーで約50分。赤穂線は児島方面に行かないので注意。<br>
+    鷲羽山へは児島駅から「とこはい号」バスで約30分（毎時30分発）。タクシーなら約10分。バスの帰り便も事前に時刻確認を。
   </div>
 </div>
 
@@ -730,7 +722,7 @@ padding: 20px;
             <div class="card-name">朝食｜ホテル無料朝食</div>
             <div class="cat-badge food">食事</div>
           </div>
-          <div class="card-note">スーパーホテルの無料朝食をしっかり食べて出発</div>
+          <div class="card-note">スーパーホテルの無料朝食をしっかり食べて出発準備</div>
         </div>
       </div>
     </div>
@@ -738,8 +730,25 @@ padding: 20px;
 ```
 <div class="tl-item">
   <div class="tl-left">
+    <div class="tl-dot move"></div>
+    <div class="tl-time">9:20</div>
+  </div>
+  <div class="tl-right">
+    <div class="card move">
+      <div class="card-top">
+        <div class="card-icon">🚃</div>
+        <div class="card-name">岡山駅発｜JR吉備線（桃太郎線）</div>
+        <div class="cat-badge move">移動</div>
+      </div>
+      <div class="card-note">吉備津駅まで約17分。1時間に2本程度なので事前に時刻確認必須</div>
+    </div>
+  </div>
+</div>
+
+<div class="tl-item">
+  <div class="tl-left">
     <div class="tl-dot sight"></div>
-    <div class="tl-time">9:30〜<br>11:00</div>
+    <div class="tl-time">9:50〜<br>11:00</div>
   </div>
   <div class="tl-right">
     <div class="card sight">
@@ -748,7 +757,24 @@ padding: 20px;
         <div class="card-name">吉備津神社</div>
         <div class="cat-badge sight">観光</div>
       </div>
-      <div class="card-note">日本最大級の比翼入母屋造。全国唯一の様式を持つ格式高い古社。岡山駅から電車で約15分</div>
+      <div class="card-note">吉備津駅から徒歩約10分。日本唯一の「吉備津造り（比翼入母屋造）」国宝本殿と全長約360mの廻廊が圧巻</div>
+    </div>
+  </div>
+</div>
+
+<div class="tl-item">
+  <div class="tl-left">
+    <div class="tl-dot move"></div>
+    <div class="tl-time">11:10</div>
+  </div>
+  <div class="tl-right">
+    <div class="card move">
+      <div class="card-top">
+        <div class="card-icon">🚃</div>
+        <div class="card-name">吉備津駅発 → 岡山駅 → 岡山城</div>
+        <div class="cat-badge move">移動</div>
+      </div>
+      <div class="card-note">吉備津駅から岡山駅まで約17分。岡山駅から路面電車「東山行き」で城下電停下車・徒歩約10分</div>
     </div>
   </div>
 </div>
@@ -761,7 +787,7 @@ padding: 20px;
     <div class="tl-item">
       <div class="tl-left">
         <div class="tl-dot sight"></div>
-        <div class="tl-time">11:30〜<br>12:30</div>
+        <div class="tl-time">11:45〜<br>12:45</div>
       </div>
       <div class="tl-right">
         <div class="card sight">
@@ -770,7 +796,7 @@ padding: 20px;
             <div class="card-name">岡山城</div>
             <div class="cat-badge sight">観光</div>
           </div>
-          <div class="card-note">「烏城」と呼ばれる黒い天守が特徴。後楽園との共通券（410円）がお得。体験型ミュージアムとして整備済み</div>
+          <div class="card-note">「烏城」と呼ばれる黒い天守が特徴。後楽園との共通券（720円）がお得。体験型ミュージアムとして整備済み</div>
         </div>
       </div>
     </div>
@@ -785,10 +811,10 @@ padding: 20px;
     <div class="card food">
       <div class="card-top">
         <div class="card-icon">🥩</div>
-        <div class="card-name">ランチ｜のむら（デミカツ丼）</div>
+        <div class="card-name">ランチ｜デミカツ丼</div>
         <div class="cat-badge food">食事</div>
       </div>
-      <div class="card-note">岡山名物・デミグラスソースのかつ丼。ご当地グルメの締めくくりに</div>
+      <div class="card-note">岡山名物・デミグラスソースのかつ丼。ご当地グルメの締めくくりに<br><span class="warn">⚠ 店名・営業情報は事前に検索して確認を</span></div>
     </div>
   </div>
 </div>
@@ -818,21 +844,38 @@ padding: 20px;
     <div class="tl-item">
       <div class="tl-left">
         <div class="tl-dot move"></div>
-        <div class="tl-time">17:30</div>
+        <div class="tl-time">17:00</div>
       </div>
       <div class="tl-right">
         <div class="card move">
           <div class="card-top">
-            <div class="card-icon">🚌</div>
-            <div class="card-name">岡山駅前発｜空港リムジンバス</div>
+            <div class="card-icon">🚶</div>
+            <div class="card-name">岡山駅西口バス停へ移動</div>
             <div class="cat-badge move">移動</div>
           </div>
-          <div class="card-note">岡山桃太郎空港まで約30分。17:30発のバスに乗車</div>
+          <div class="card-note">余裕をもって乗り場へ。混雑時は乗れないこともあるので早めに</div>
         </div>
       </div>
     </div>
 
 ```
+<div class="tl-item">
+  <div class="tl-left">
+    <div class="tl-dot move"></div>
+    <div class="tl-time">17:30</div>
+  </div>
+  <div class="tl-right">
+    <div class="card move">
+      <div class="card-top">
+        <div class="card-icon">🚌</div>
+        <div class="card-name">岡山駅西口発｜空港リムジンバス</div>
+        <div class="cat-badge move">移動</div>
+      </div>
+      <div class="card-note">岡山桃太郎空港まで約30分・予約不要<br><span class="warn">⚠ 17:30発の存在は出発前に時刻表で要確認</span></div>
+    </div>
+  </div>
+</div>
+
 <div class="tl-item">
   <div class="tl-left">
     <div class="tl-dot move"></div>
@@ -872,9 +915,10 @@ padding: 20px;
 
   <div class="note-box">
     <strong>📌 3日目メモ</strong><br>
-    吉備津神社と岡山城は少し離れているので移動時間に注意。<br>
+    吉備津神社はJR吉備線（桃太郎線）で吉備津駅まで約17分＋徒歩10分＝計約30分。電車は1時間2本程度なので往復の時刻を事前に確認。<br>
+    岡山城の後楽園共通券は720円（個別だと後楽園500円＋岡山城400円＝900円）。<br>
     お土産は岡山駅ビル「さんすて」や「岡山一番街」でほぼ揃う。<br>
-    リムジンバスは混雑時に乗れないことがあるので早めにバス停へ。
+    リムジンバスは予約不要。混雑時に乗れないことがあるので早めにバス停へ。
   </div>
 </div>
 
@@ -898,7 +942,6 @@ function showDay(n) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// 初期表示時にも1日目をアクティブに
 window.addEventListener('DOMContentLoaded', function() { showDay(1); });
 </script>
 
